@@ -1,6 +1,7 @@
 <section>
   <form
     fxLayout="column"
+    fxLayoutGap="10px"
     fxLayoutAlign="center center"
     #f="ngForm"
     (ngSubmit)="onSubmit(f)"
@@ -37,6 +38,32 @@
       <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
       <mat-error>Has to be at least 6 characters</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">Submit</button>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="my birthday"
+        [matDatepicker]="picker"
+        [max]="maxDate"
+        ngModel
+        name="birthDate"
+      />
+      <mat-hint>M/D/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox
+      ngModel
+      name="agree"
+      required
+      labelPosition="before"
+      color="primary"
+      >Agree to Therms and conditions</mat-checkbox
+    >
+    <button mat-raised-button color="primary" [disabled]="f.invalid">
+      Submit
+    </button>
   </form>
 </section>
